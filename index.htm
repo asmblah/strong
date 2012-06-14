@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Strong.js demo</title>
+
+        <script type="text/javascript">
+
+        </script>
+    </head>
+
+    <body>
+        <h1>Strong.js demo</h1>
+
+        <script type="text/javascript">
+            define([
+                "js/Strong"
+            ], function (
+                Strong
+            ) {
+                var Message, message;
+
+                // Nested arrays indicate multiple possible types/values
+                Message = Strong([
+                    String, [Number, null]
+                ], function (
+                    text, userID
+                ) {
+                    this.text = text;
+                    this.userID = userID;
+                });
+
+                message = new Message("hello", 27);
+                document.body.innerHTML += "This should be 'hello': " + message.text + "<br />";
+
+                message = new Message("fred", 27);
+                document.body.innerHTML += "This should be 27: " + message.userID + "<br />";
+
+                try {
+                    message = new Message(27, "fred");
+                } catch (error) {
+                    document.body.innerHTML += "This should error: " + error + "<br />";
+                }
+            });
+        </script>
+    </body>
+</html>
