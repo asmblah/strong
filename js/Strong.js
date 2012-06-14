@@ -1,4 +1,7 @@
+/*global require, define */
+
 define(function () {
+    "use strict";
 
     function Strong(types, fn) {
         return function () {
@@ -30,7 +33,7 @@ define(function () {
                 } else {
                     // List of possible types was specified
                     if ({}.toString.call(expected) === "[object Array]") {
-                        for (typeIdx = 0 ; typeIdx < expected.length ; ++typeIdx) {
+                        for (typeIdx = 0; typeIdx < expected.length; typeIdx += 1) {
                             matched = checkType(expected[typeIdx], actual);
 
                             if (!matched) {
@@ -49,7 +52,7 @@ define(function () {
                 }
             }
 
-            for (idx = 0 ; idx < args.length ; ++idx) {
+            for (idx = 0; idx < args.length; idx += 1) {
                 checkType(types[idx], args[idx]);
             }
 
